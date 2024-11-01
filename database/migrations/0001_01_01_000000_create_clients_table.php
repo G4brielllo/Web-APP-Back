@@ -12,16 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
+            $table->longText('logo')->nullable();
+            $table->string('country')->nullable();
+            $table->string('email')->unique();
             $table->timestamps();
-        });
-
-        Schema::table('projects', function (Blueprint $table) {
-            $table->decimal('total_estimation', 10, 2)->default(0.00);
         });
     }
 
@@ -30,7 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('clients');
    
     }
 };
