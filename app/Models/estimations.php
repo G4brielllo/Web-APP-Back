@@ -11,16 +11,8 @@ class estimations extends Model
       /**  
     * @var array<int, string>
     */
-    protected $fillable = [
-        'project_id',
-        'client_id',
-        'name',
-        'description',
-        'date',
-        'type',
-        'amount',
+    protected $fillable = ['name', 'description', 'project_id', 'type', 'amount', 'date'];
 
-    ];
 
     public function client()
     {
