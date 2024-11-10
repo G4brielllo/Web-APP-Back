@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Project extends Model
+class projects extends Model
 {
     protected $fillable = ['client_id', 'name', 'description'];
 
