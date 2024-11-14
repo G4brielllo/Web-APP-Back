@@ -16,15 +16,14 @@ Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/{id}', [ProjectController::class, 'show']);
 Route::post('/projects', [ProjectController::class, 'store']);
 Route::put('/projects/{id}', [ProjectController::class, 'update']);
-Route::delete('/projects', [ProjectController::class, 'delete']);  
-
+Route::delete('/projects/{id}', [ProjectController::class, 'delete']);
 
 
 Route::get('/estimations', [EstimationController::class, 'index']);
 Route::get('/estimations/{id}', [EstimationController::class, 'show']);
 Route::post('/estimations', [EstimationController::class, 'store']);
 Route::put('/estimations/{id}', [EstimationController::class, 'update']);
-Route::delete('/estimations', [EstimationController::class, 'delete']);
+Route::delete('/estimations/{id}', [EstimationController::class, 'delete']);
 
 Route::get('/', function () {
     return view('welcome');

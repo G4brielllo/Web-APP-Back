@@ -15,7 +15,7 @@ class EstimationController extends Controller
      }
      public function store(Request $request)
      {
-         $ValidatedData  = $request->validate([
+         $ValidateData  = $request->validate([
              'name' => 'required|string|max:255',
              'description' => 'required|string',
              'project_id' => 'required|exists:projects,id',
@@ -24,7 +24,8 @@ class EstimationController extends Controller
              'date' => 'required|date',
          ]);
  
-         $estimation = Estimation::create($ValidatedData);
+         $estimation = estimations::create($ValidateData);
+        // $Project=projects::create($ValidateData);
  
          return response()->json($estimation,201);
      }
@@ -33,13 +34,13 @@ class EstimationController extends Controller
      {
       $estimation = estimations::find($id);
 
-      if (is_null($client)) {
+      if (is_null($estimation)) {
          return response()->json(['message' => 'Client not found'], 404);
      }
      $validatedData = $request->validate([
       'name' => 'required|string|max:255',
        'description' => 'required|string',
-       'project_id'=> 'required|exists:project_id',
+       'project_id' => 'required|exists:projects,id',
        'client_id'=>'required|exists:clients,id',
        'date'=>'required|date',
        'type' => 'required|in:hourly,fixed',
@@ -48,11 +49,11 @@ class EstimationController extends Controller
      $estimation ->update($validatedData);
      return response()->json($estimation,200);
      }
-     public function destroy($id)
+     public function delete($id)
      {
       $estimation = estimations::find($id);
 
-      if (is_null($client)) {
+      if (is_null($estimation)) {
          return response()->json(['message' => 'Client not found'], 404);
      }
      $estimation->delete();

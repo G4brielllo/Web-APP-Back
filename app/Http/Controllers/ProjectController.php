@@ -21,14 +21,15 @@ class ProjectController extends Controller
             'description'=>'nullable|string'
         ]);
 
-        $Project=Project::create($ValidateData);
+        $Project=projects::create($ValidateData);
 
         return response()->json($Project,201);
     }
     public function update(Request $request, $id)
     {
     $project = projects::find($id);
-    if (is_null($client)) {
+
+    if (is_null($project)) {
         return response()->json(['message' => 'Client not found'], 404);
     }
 
@@ -42,16 +43,18 @@ class ProjectController extends Controller
     return response()->json($project,200);
 
     }
-    public function destroy($id)
+    public function delete($id)
     {
         $project = projects::find($id);
-
-        if (is_null($client)) {
-            return response()->json(['message' => 'Client not found'], 404);
+    
+        if (is_null($project)) {
+            return response()->json(['message' => 'Project not found'], 404);
         }
+    
         $project->delete();
-        return response()->json(['message'=>'project delete',204]);
+        return response()->json(['message' => 'Project deleted'], 204);
     }
+    
     public function show($id)
     {
        return projects::find($id);
