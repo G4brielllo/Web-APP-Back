@@ -2,9 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EstimationController;
+
+
+Route::post('/register',[AuthenticationController::class, 'register']);
+Route::post('/login',[AuthenticationController::class, 'login']);
+Route::post('/logout',[AuthenticationController::class, 'logout']);
 
 Route::get('/clients', [ClientController::class, 'index']);
 Route::get('/clients/{id}', [ClientController::class, 'show']);
