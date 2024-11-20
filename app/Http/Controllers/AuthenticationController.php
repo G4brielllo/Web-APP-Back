@@ -22,9 +22,7 @@ class AuthenticationController extends Controller
 
         return response()->json([
             'id' => $user->id,
-            'email' => $user->email,
-            'name' => $user->name,
-            'role' => $user->role,
+            'user' => $user,
             'token' => $token,
         ]);
     }
