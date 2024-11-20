@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
-           // 'logo' => 'nullable|string',
+            'logo' => 'nullable|string',
         ]);
 
         $user = User::create([
@@ -40,7 +40,7 @@ class AuthenticationController extends Controller
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
             'role' => 'user',
-           // 'logo' => $validatedData['logo'],
+            'logo' => $validatedData['logo'],
         ]);
 
         return response()->json(['message' => 'User registered successfully'], 201);
