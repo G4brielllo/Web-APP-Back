@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\projects;
+use App\Models\Project;
 
 class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = projects::all();
+        $Project = Project::all();
 
-        return  response()->json($projects,200);
+        return  response()->json($Project,200);
     }
     public function store(Request $request)
     {
@@ -21,13 +21,13 @@ class ProjectController extends Controller
             'description'=>'nullable|string'
         ]);
 
-        $Project=projects::create($ValidateData);
+        $Project=Project::create($ValidateData);
 
         return response()->json($Project,201);
     }
     public function update(Request $request, $id)
     {
-    $project = projects::find($id);
+    $project = Project::find($id);
 
     if (is_null($project)) {
         return response()->json(['message' => 'Client not found'], 404);
@@ -45,7 +45,7 @@ class ProjectController extends Controller
     }
     public function delete($id)
     {
-        $project = projects::find($id);
+        $project = Project::find($id);
     
         if (is_null($project)) {
             return response()->json(['message' => 'Project not found'], 404);
@@ -57,6 +57,6 @@ class ProjectController extends Controller
     
     public function show($id)
     {
-       return projects::find($id);
+       return Project::find($id);
     }
 }

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\clients;
+use App\Models\Client;
 
 class ClientController extends Controller
 {
     public function index()
     {
-        $clients = clients::all();
+        $Client = Client::all();
 
-        return  response()->json($clients,200);
+        return  response()->json($Client,200);
     }
 
     public function store(Request $request)
@@ -26,14 +26,14 @@ class ClientController extends Controller
             'email' => 'required|email',
         ]);
 
-        $client = clients::create($validatedData);
+        $client = Client::create($validatedData);
     
         return response()->json($client, 201);
     }
 
     public function update(Request $request, $id)
     {
-        $client = clients::find($id);
+        $client = Client::find($id);
 
         if (is_null($client)) {
             return response()->json(['message' => 'Client not found'], 404);
@@ -44,7 +44,7 @@ class ClientController extends Controller
             'description' => 'required|string',
             'logo' => 'nullable|string',
             'country' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:clients,email,' . $id,    
+            'email' => 'required|string|email|unique:Client,email,' . $id,    
         ]);
 
         $client->update($validatedData);
@@ -53,7 +53,7 @@ class ClientController extends Controller
     }
     public function delete($id)
     {
-        $client = clients::find($id);
+        $client = Client::find($id);
     
         if (is_null($client)) {
             return response()->json(['message' => 'Client not found'], 404);
@@ -65,7 +65,7 @@ class ClientController extends Controller
     }
     public function show($id)
     {
-       return clients::find($id);
+       return Client::find($id);
     }
 
 }

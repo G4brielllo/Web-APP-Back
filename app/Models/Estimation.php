@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class estimations extends Model
+class Estimation extends Model
 {
       /**  
     * @var array<int, string>
@@ -14,7 +14,7 @@ class estimations extends Model
     protected $fillable = ['name', 'description', 'project_id', 'type', 'amount', 'date'];
 
 
-    public function client()
+    public function Client()
     {
         return $this->belongsTo(Client::class);
     }

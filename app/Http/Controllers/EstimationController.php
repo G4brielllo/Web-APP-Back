@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\estimations;
+use App\Models\Estimation;
 
 class EstimationController extends Controller
 {
      public function index()
      {
-        $estimations = estimations::all();
+        $Estimation = Estimation::all();
 
-        return response()->json($estimations,200);
+        return response()->json($Estimation,200);
      }
      public function store(Request $request)
      {
@@ -24,7 +24,7 @@ class EstimationController extends Controller
              'date' => 'required|date',
          ]);
  
-         $estimation = estimations::create($ValidateData);
+         $estimation = Estimation::create($ValidateData);
         // $Project=projects::create($ValidateData);
  
          return response()->json($estimation,201);
@@ -32,7 +32,7 @@ class EstimationController extends Controller
 
      public function update(Request $request, $id)
      {
-      $estimation = estimations::find($id);
+      $estimation = Estimation::find($id);
 
       if (is_null($estimation)) {
          return response()->json(['message' => 'Client not found'], 404);
@@ -51,17 +51,17 @@ class EstimationController extends Controller
      }
      public function delete($id)
      {
-      $estimation = estimations::find($id);
+      $estimation = Estimation::find($id);
 
       if (is_null($estimation)) {
          return response()->json(['message' => 'Client not found'], 404);
      }
      $estimation->delete();
-     return response()->json(['message'=>'estimations delete',204]);
+     return response()->json(['message'=>'Estimation delete',204]);
      }
      public function show($id)
      {
-        return estimations::find($id);
+        return Estimation::find($id);
      }
 
 }
