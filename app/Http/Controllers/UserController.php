@@ -41,10 +41,6 @@ class UserController extends Controller
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
 
-        if ($validatedData['password']) {
-            $user->password = bcrypt($validatedData['password']);
-        }
-
         $user->logo = $validatedData['logo'] ?? null;
 
         try {
