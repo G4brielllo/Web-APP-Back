@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EstimationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 Route::middleware([ 'check.role:admin'])->group(function () {
    
@@ -49,7 +50,14 @@ Route::get('/users', [UserController::class,'index']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
+Route::post('/reset-request', [ResetPasswordController::class, 'sendResetLinkEmail'])
+    ->name('password.email');
 
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])
+    ->name('password.update');
+
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])
+    ->name('password.reset');
 
 
 Route::get('/', function () {
