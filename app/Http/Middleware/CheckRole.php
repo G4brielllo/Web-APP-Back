@@ -26,5 +26,4 @@ class CheckRole
         Log::info('User role does not match any required roles.');
         return response()->json(['error' => 'Forbidden'], 403);
     }
-
 }
