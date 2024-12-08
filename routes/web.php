@@ -8,7 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EstimationController;
 use App\Http\Controllers\UserController;
 
-Route::middleware(['auth:api', 'check.role:admin'])->group(function () {
+Route::middleware([ 'check.role:admin'])->group(function () {
    
 
     Route::post('/clients', [ClientController::class, 'store']);
@@ -29,7 +29,7 @@ Route::middleware(['auth:api', 'check.role:admin'])->group(function () {
     
 });
 
-Route::middleware(['auth:api', 'check.role:admin,user'])->group(function () {
+Route::middleware([ 'check.role:admin,user'])->group(function () {
     Route::get('/clients', [ClientController::class, 'index']);
     Route::get('/projects', [ProjectController::class, 'index']);
     Route::get('/estimations', [EstimationController::class, 'index']);
