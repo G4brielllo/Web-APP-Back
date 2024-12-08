@@ -19,12 +19,17 @@ class AuthenticationController extends Controller
         
         $user = Auth::user();
         $role = $user->role;
-
+        $user = Auth::user();
+        $role = $user->role;
         return response()->json([
             'id' => $user->id,
-            'user' => $user,
+            'email' => $user->email,
+            'name' => $user->name,
+            'role' => $user->role,
             'token' => $token,
+            'logo' => $user->logo,
         ]);
+    
     }
     public function register(Request $request)
     {
