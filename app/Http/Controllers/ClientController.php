@@ -44,7 +44,7 @@ class ClientController extends Controller
             'description' => 'required|string',
             'logo' => 'nullable|string',
             'country' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:Client,email,' . $id,    
+            'email' => 'required|string|email|unique:clients,email,' . $id,    
         ]);
 
         $client->update($validatedData);
