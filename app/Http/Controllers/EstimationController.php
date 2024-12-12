@@ -41,7 +41,6 @@ class EstimationController extends Controller
       'name' => 'required|string|max:255',
        'description' => 'required|string',
        'project_id' => 'required|exists:projects,id',
-       'client_id'=>'required|exists:clients,id',
        'date'=>'required|date',
        'type' => 'required|in:hourly,fixed',
        'amount' => 'required|numeric',
